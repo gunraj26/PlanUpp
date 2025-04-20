@@ -1,0 +1,247 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+
+    --primary: 222.2 47.4% 11.2%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .image-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  /* Fix for Safari on Mac */
+  @supports (-webkit-touch-callout: none) {
+    .image-container img {
+      object-fit: contain;
+      max-height: 100%;
+    }
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    overflow-y: auto;
+  }
+
+  /* Fix for image display across devices */
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  /* Fix for Safari on Mac */
+  @supports (-webkit-touch-callout: none) {
+    .image-container img,
+    [class*="relative"] img {
+      object-fit: contain;
+      max-height: 100%;
+    }
+  }
+
+  /* Ensure all main content areas are scrollable */
+  main,
+  div[class*="min-h-screen"] {
+    overflow-y: auto;
+  }
+}
+
+@layer components {
+  /* Calendar specific styles */
+  .rdp {
+    --rdp-cell-size: 40px;
+    --rdp-accent-color: #c3b091;
+    --rdp-background-color: #f5efe6;
+    --rdp-accent-color-dark: #b3a081;
+    --rdp-background-color-dark: #e8d5c4;
+    --rdp-outline: 2px solid var(--rdp-accent-color);
+    --rdp-outline-selected: 2px solid var(--rdp-accent-color);
+  }
+
+  .rdp-day_selected,
+  .rdp-day_selected:focus-visible,
+  .rdp-day_selected:hover {
+    background-color: var(--rdp-accent-color);
+    color: #5c4033;
+  }
+
+  .rdp-button:hover:not([disabled]):not(.rdp-day_selected) {
+    background-color: var(--rdp-background-color);
+  }
+
+  /* Fix for calendar layout */
+  .rdp-months {
+    display: flex;
+    justify-content: center;
+  }
+
+  .rdp-month {
+    margin: 0;
+  }
+
+  .rdp-table {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .rdp-head_row,
+  .rdp-row {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .rdp-head_cell,
+  .rdp-cell {
+    flex: 1;
+    text-align: center;
+  }
+}
+
+/* Calendar specific fixes */
+.rdp {
+  margin: 0;
+  --rdp-cell-size: 40px !important;
+  --rdp-accent-color: #c3b091 !important;
+  --rdp-background-color: #f5efe6 !important;
+}
+
+/* Fix day names alignment */
+.rdp-head_row {
+  display: flex !important;
+  justify-content: space-between !important;
+  width: 100% !important;
+}
+
+.rdp-head_cell {
+  width: 40px !important;
+  height: 40px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-align: center !important;
+  font-size: 0.875rem !important;
+  font-weight: 500 !important;
+}
+
+/* Fix day cells alignment */
+.rdp-row {
+  display: flex !important;
+  justify-content: space-between !important;
+  width: 100% !important;
+}
+
+.rdp-cell {
+  width: 40px !important;
+  height: 40px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.rdp-day {
+  width: 40px !important;
+  height: 40px !important;
+  border-radius: 50% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.rdp-day_selected {
+  background-color: #c3b091 !important;
+  color: #5c4033 !important;
+}
+
+.rdp-day_today {
+  font-weight: bold !important;
+  border: 1px solid #c3b091 !important;
+}
+
+/* Fix table layout */
+.rdp-table {
+  width: 100% !important;
+  border-collapse: separate !important;
+  border-spacing: 0 !important;
+}
+
+/* Fix month layout */
+.rdp-month {
+  width: 100% !important;
+}
+
